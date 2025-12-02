@@ -7,3 +7,6 @@
 /metrics.json
 /eval.json
 data/
+dvc_remote/
+.ipynb_checkpoints/
+

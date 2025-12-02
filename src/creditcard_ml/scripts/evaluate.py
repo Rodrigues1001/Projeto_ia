@@ -1,26 +1,29 @@
 import pandas as pd
-from sklearn.metrics import roc_auc_score
 import joblib
+from sklearn.metrics import roc_auc_score
 import json
 
-def main():
+PROCESSED_PATH = "data/processed.csv"
+MODEL_PATH = "src/creditcard_ml/model/model.pkl"
+EVAL_PATH = "eval.json"
+
+def evaluate():
     print("📈 Evaluating model...")
 
-    df = pd.read_csv("data/processed.csv")
+    df = pd.read_csv(PROCESSED_PATH)
 
-    X = df.drop(columns=["Class"])
     y = df["Class"]
+    X = df.drop(columns=["Class"])
 
-    model = joblib.load("src/creditcard_ml/model/model.pkl")
+    model = joblib.load(MODEL_PATH)
 
-    proba = model.predict_proba(X)[:, 1]
+    preds = model.predict_proba(X)[:, 1]
+    auc = roc_auc_score(y, preds)
 
-    auc = roc_auc_score(y, proba)
+    with open(EVAL_PATH, "w") as f:
+        json.dump({"AUC": auc}, f, indent=2)
 
-    with open("eval.json", "w") as f:
-        json.dump({"auc": auc}, f, indent=4)
-
-    print("📄 eval.json saved")
+    print(f"📄 eval.json saved with AUC={auc:.4f}")
 
 if __name__ == "__main__":
-    main()
+    evaluate()

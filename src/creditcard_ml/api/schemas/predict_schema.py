@@ -1,6 +1,8 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class PredictRequest(BaseModel):
+    Time: float   # Agora opcional com valor default
     V1: float
     V2: float
     V3: float
@@ -29,4 +31,5 @@ class PredictRequest(BaseModel):
     V26: float
     V27: float
     V28: float
+
     Amount: float

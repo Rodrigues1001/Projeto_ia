@@ -1,2 +1,7 @@
 [core]
     autostage = true
+    remote = localremote
+['remote "gdrive"']
+    url = gdrive://<folder-id>
+['remote "localremote"']
+    url = ../dvc_remote
