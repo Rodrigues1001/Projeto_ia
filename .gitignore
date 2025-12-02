@@ -6,3 +6,4 @@
 *.pkl
 /metrics.json
 /eval.json
+data/

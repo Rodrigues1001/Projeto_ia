@@ -1,13 +1,13 @@
 stages:
   download:
-    cmd: python src/creditcard_ml/scripts/download_data.py
+    cmd: poetry run python src/creditcard_ml/scripts/download_data.py
     deps:
       - src/creditcard_ml/scripts/download_data.py
     outs:
       - data/creditcard.csv
 
   preprocess:
-    cmd: python src/creditcard_ml/scripts/preprocess.py
+    cmd: poetry run python src/creditcard_ml/scripts/preprocess.py
     deps:
       - data/creditcard.csv
       - src/creditcard_ml/scripts/preprocess.py
@@ -15,7 +15,7 @@ stages:
       - data/processed.csv
 
   train:
-    cmd: python src/creditcard_ml/scripts/train.py
+    cmd: poetry run python src/creditcard_ml/scripts/train.py
     deps:
       - data/processed.csv
       - src/creditcard_ml/scripts/train.py
@@ -24,7 +24,7 @@ stages:
       - metrics.json
 
   evaluate:
-    cmd: python src/creditcard_ml/scripts/evaluate.py
+    cmd: poetry run python src/creditcard_ml/scripts/evaluate.py
     deps:
       - data/processed.csv
       - src/creditcard_ml/model/model.pkl
