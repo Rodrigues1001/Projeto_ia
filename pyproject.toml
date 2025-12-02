@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "creditcard-ml"
+version = "0.1.0"
+description = "Credit Card Fraud Detection ML system for production"
+authors = ["Seu Nome <email@example.com>"]
+packages = [
+    { include = "creditcard_ml", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.2.0"
+scikit-learn = "^1.5.0"
+fastapi = "^0.111.0"
+uvicorn = "^0.30.0"
+joblib = "^1.4.0"
+kagglehub = "^0.2.5"
+typer = "^0.12.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.0"
+
+[tool.poetry.scripts]
+train = "creditcard_ml.training.train:main"
+api = "creditcard_ml.api.app:start"
+batch_predict = "creditcard_ml.core.predict_batch:cli"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

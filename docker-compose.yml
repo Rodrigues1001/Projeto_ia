@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: creditcard_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+    command: ["poetry", "run", "api"]
