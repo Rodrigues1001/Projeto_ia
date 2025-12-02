@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 
 class PredictRequest(BaseModel):
-    Time: float   # Agora opcional com valor default
+    Time: float
     V1: float
     V2: float
     V3: float

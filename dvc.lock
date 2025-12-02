@@ -35,17 +35,14 @@ stages:
       hash: md5
       md5: d30e0b8a125279b66b8874bc1d90d994
       size: 162424924
-      isexec: true
     - path: src/creditcard_ml/core/feature_engineering.py
       hash: md5
-      md5: 7ce64dd96b02584ea57506a611a81ea4
-      size: 766
-      isexec: true
+      md5: d51867076c1012098cc7f8d8c445dbf4
+      size: 1083
     - path: src/creditcard_ml/training/train.py
       hash: md5
       md5: 6d4611da26a6c2db7c8000e50c03be8a
       size: 1662
-      isexec: true
     outs:
     - path: metrics.json
       hash: md5
@@ -62,7 +59,6 @@ stages:
       hash: md5
       md5: d30e0b8a125279b66b8874bc1d90d994
       size: 162424924
-      isexec: true
     - path: src/creditcard_ml/model/model.pkl
       hash: md5
       md5: c0f8c8b78258e538b012d5d549d4d747
@@ -71,7 +67,6 @@ stages:
       hash: md5
       md5: ee2c473695e4392332fcbdce742b00d0
       size: 671
-      isexec: true
     outs:
     - path: eval.json
       hash: md5
