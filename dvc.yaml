@@ -15,13 +15,16 @@ stages:
       - data/processed.csv
 
   train:
-    cmd: poetry run python src/creditcard_ml/scripts/train.py
+    cmd: poetry run train
     deps:
       - data/processed.csv
-      - src/creditcard_ml/scripts/train.py
+      - src/creditcard_ml/core/feature_engineering.py
+      - src/creditcard_ml/training/train.py
     outs:
       - src/creditcard_ml/model/model.pkl
-      - metrics.json
+    metrics:
+      - metrics.json:
+          cache: false
 
   evaluate:
     cmd: poetry run python src/creditcard_ml/scripts/evaluate.py
@@ -31,3 +34,5 @@ stages:
       - src/creditcard_ml/scripts/evaluate.py
     outs:
       - eval.json
+
+

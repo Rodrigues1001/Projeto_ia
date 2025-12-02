@@ -1,61 +1,93 @@
-# Credit Card Fraud Detection – Machine Learning Project
 
-Este projeto implementa uma solução completa de **detecção de fraude em cartões de crédito**, seguindo boas práticas de **Machine Learning Engineering** e **MLOps**, contemplando:
+# 🛡️ Credit Card Fraud Detection — Full MLOps Pipeline
 
-- ✔️ Predições instantâneas via API (FastAPI)
-- ✔️ Predições em lote (batch) com suporte a grandes volumes (GB–TB)
-- ✔️ Pipeline de features reproduzível
-- ✔️ Treinamento automatizado
-- ✔️ Versionamento e empacotamento com Poetry
-- ✔️ Ambiente isolado e reprodutível com Docker
-- ✔️ Testes automatizados (pytest)
-- ✔️ Arquitetura profissional com separação clara de camadas
+Este projeto implementa um pipeline **completo de Machine Learning + MLOps**, incluindo:
 
-O objetivo é demonstrar a capacidade de estruturar um sistema de Machine Learning robusto, escalável e pronto para produção.
+✔ DVC Pipeline (download, preprocess, train, eval)
+✔ FastAPI com endpoints de predição (single e batch)
+✔ Re-treino via API
+✔ Versionamento de modelos
+✔ Orquestração com Poetry
+✔ Notebook de análise incluído
 
 ---
 
-# 🧱 Arquitetura
+## 🚀 Como rodar o projeto
 
-```text
+### 1️⃣ Instalar dependências
+```sh
+poetry install
+```
+
+### 2️⃣ Executar o pipeline completo
+```sh
+poetry run dvc repro
+```
+
+### 3️⃣ Subir API
+```sh
+poetry run api
+```
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
 src/
  └── creditcard_ml/
-      ├── api/                  # Camada de interface (FastAPI)
-      │     ├── app.py
-      │     ├── routes/
-      │     │     ├── predict_route.py
-      │     │     └── batch_route.py
-      │     └── schemas/
-      │           └── predict_schema.py
-      │
-      ├── core/                 # Camada de lógica do modelo
-      │     ├── model_loader.py
-      │     ├── feature_engineering.py
-      │     ├── predict_single.py
-      │     └── predict_batch.py
-      │
-      ├── data/
-      │     └── loader.py       # Download/ingestão do dataset (KaggleHub)
-      │
-      ├── model/                # Artefatos treinados
-      │     ├── model.pkl
-      │     └── scaler.pkl
-      │
-      ├── training/             # Treinamento
-      │     └── train.py
-      │
-      └── test/                 # Testes automatizados
-            ├── test_features.py
-            └── test_predict.py
+      ├── api/                  # FastAPI
+      ├── core/                 # Lógica de ML
+      ├── model/                # Modelos + scalers
+      ├── training/             # Script de treino
+      ├── scripts/              # Pipeline DVC
+```
 
-# 🚀 Rodando o projeto com Docker
+---
 
-docker compose up --build
+## 📘 Notebook
 
-Treinar modelo:
-  docker compose run api poetry run train
+O notebook final está disponível em:
 
-Testar end-point:
-  link-ambiente/docs
+📄 **final_notebook.ipynb**
 
+Inclui:
 
+- Estatísticas do dataset
+- Distribuição das classes
+- Feature engineering
+- Métricas do modelo
+- Comparação entre modelos
+- Curva ROC + Matriz de Confusão
+
+---
+
+## ⚙️ Endpoints Principais
+
+### 🔹 Predição
+
+`POST /predict`
+
+### 🔹 Predição em Lote
+
+`POST /batch`
+
+### 🔹 Re-treinar modelo
+
+`POST /mlops/retrain`
+
+---
+
+## 📦 Versionamento de Modelos
+
+Usa:
+
+- `DVC`
+- Remote storage local configurado
+- Cada treino gera um modelo novo versionado
+
+---
+
+## ✨ Autor
+
+Criado por Rodrigo — Projeto completo com ML + API + MLOps.
