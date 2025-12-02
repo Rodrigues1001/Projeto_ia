@@ -1,11 +1,5 @@
 from creditcard_ml.core.predict_single import predict_single
 
-"""
-  Testes a previs o de fraude com base em um exemplo de entrada.
-
-  Verifica se a fun o predict_single retorna um dicion rio com a chave
-  "fraud_probability" e valor num rico representando a probabilidade de fraude.
-"""
 def test_predict_single():
   sample = {
     "V1": -1.3598071336738,

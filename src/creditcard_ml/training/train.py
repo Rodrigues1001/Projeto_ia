@@ -12,18 +12,15 @@ SCALER_TIME_PATH = "src/creditcard_ml/model/scaler_time.pkl"
 def main():
     print("🚀 Training model...")
 
-    # 1. Carregar dataset já pré-processado pelo DVC
     df = pd.read_csv(DATA_PATH)
 
     X = df.drop(columns=["Class"])
     y = df["Class"]
 
-    # 2. Treino/validação
     X_train, X_val, y_train, y_val = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
 
-    # 3. Modelo
     model = RandomForestClassifier(
         n_estimators=200,
         max_depth=20,
@@ -33,7 +30,6 @@ def main():
 
     model.fit(X_train, y_train)
 
-    # 4. Avaliação
     preds = model.predict(X_val)
     probs = model.predict_proba(X_val)[:, 1]
 
@@ -44,11 +40,9 @@ def main():
         "f1": float(f1_score(y_val, preds)),
     }
 
-    # 5. Salvar modelo
     joblib.dump(model, MODEL_PATH)
     print("🤖 model.pkl saved")
 
-    # 6. Salvar métricas
     import json
     with open("metrics.json", "w") as f:
         json.dump(metrics, f, indent=4)

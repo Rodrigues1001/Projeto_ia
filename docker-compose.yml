@@ -11,7 +11,7 @@ services:
       - ./dvc.yaml:/app/dvc.yaml
       - ./dvc.lock:/app/dvc.lock
       - ./.dvc:/app/.dvc
-      - ./data:/app/data  # opcional (só use se estiver desenvolvendo)
+      - ./data:/app/data
     environment:
       PYTHONUNBUFFERED: 1
     command: ["poetry", "run", "api"]

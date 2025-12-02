@@ -6,14 +6,12 @@ from fastapi import APIRouter
 
 router = APIRouter(prefix="/mlops", tags=["MLOps"])
 
-
-# --- ENCONTRA AUTOMATICAMENTE O BINÁRIO DO DVC NO DOCKER ---
 def find_dvc_bin():
     base_path = "/root/.cache/pypoetry/virtualenvs"
     matches = glob.glob(f"{base_path}/*/bin/dvc")
 
     if not matches:
-        return "dvc"  # fallback (para rodar fora do docker)
+        return "dvc"
 
     return matches[0]
 
@@ -21,8 +19,6 @@ def find_dvc_bin():
 DVC_BIN = "/root/.cache/pypoetry/virtualenvs/creditcard-ml-9TtSrW0h-py3.10/bin/dvc"
 print(f"[MLOPS] Using DVC: {DVC_BIN}")
 
-
-# --- EXECUTA COMANDOS DVC PELO BINÁRIO DIRETO ---
 def run(cmd: str):
     process = subprocess.Popen(
         f"{DVC_BIN} {cmd}",
